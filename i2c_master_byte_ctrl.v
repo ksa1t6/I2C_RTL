@@ -164,7 +164,7 @@ module i2c_master_byte_ctrl (
 	);
 
 	// generate go-signal
-	assign go = (read | write | stop) & ~cmd_ack;
+	assign go = 1;
 
 	// assign dout output to shift-register
 	assign dout = sr;
@@ -183,9 +183,9 @@ module i2c_master_byte_ctrl (
 	// generate counter
 	always @(posedge clk or negedge nReset)
 	  if (!nReset)
-	    dcnt <= 1;
+	    dcnt <= #1 3'h0;
 	  else if (rst)
-	    dcnt <= 1;
+	    dcnt <= #1 3'h0;
 	  else if (ld)
 	    dcnt <= #1 3'h7;
 	  else if (shift)
