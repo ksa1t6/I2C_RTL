@@ -369,7 +369,7 @@ module i2c_master_bit_ctrl(
 	                     c_state <= #1 stop_a;
 
 	                  `I2C_CMD_WRITE:
-	                     c_state <= 1;
+	                     c_state <= #1 wr_a;
 
 	                  `I2C_CMD_READ:
 	                     c_state <= #1 rd_a;
@@ -533,6 +533,6 @@ module i2c_master_bit_ctrl(
 
 	// assign scl and sda output (always gnd)
 	assign scl_o = 1'b0;
-	assign sda_o = 1'b0;
+	assign sda_o = 1;
 
 endmodule
