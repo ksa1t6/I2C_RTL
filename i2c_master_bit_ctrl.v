@@ -238,7 +238,7 @@ module i2c_master_bit_ctrl(
 	        sSCL <= #1 1'b1;
 	        sSDA <= #1 1'b1;
 
-	        dSCL <= #1 1'b1;
+	        dSCL <= #4 1'b1;
 	        dSDA <= #1 1'b1;
 	    end
 	  else if (rst)
@@ -246,7 +246,7 @@ module i2c_master_bit_ctrl(
 	        sSCL <= #1 1'b1;
 	        sSDA <= #1 1'b1;
 
-	        dSCL <= #1 1'b1;
+	        dSCL <= #4 1'b1;
 	        dSDA <= #1 1'b1;
 	    end
 	  else
