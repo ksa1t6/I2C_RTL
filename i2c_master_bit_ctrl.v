@@ -338,7 +338,7 @@ module i2c_master_bit_ctrl(
 	always @(posedge clk or negedge nReset)
 	  if (!nReset)
 	    begin
-	        c_state <= #1 idle;
+	        c_state <= 0;
 	        cmd_ack <= #1 1'b0;
 	        scl_oen <= #1 1'b1;
 	        sda_oen <= #1 1'b1;
@@ -346,7 +346,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else if (rst | al)
 	    begin
-	        c_state <= #1 idle;
+	        c_state <= 0;
 	        cmd_ack <= #1 1'b0;
 	        scl_oen <= #1 1'b1;
 	        sda_oen <= #1 1'b1;
@@ -375,7 +375,7 @@ module i2c_master_bit_ctrl(
 	                     c_state <= #1 rd_a;
 
 	                  default:
-	                    c_state <= #1 idle;
+	                    c_state <= 0;
 	                endcase
 
 	                scl_oen <= #1 scl_oen; // keep SCL in same state
@@ -418,7 +418,7 @@ module i2c_master_bit_ctrl(
 
 	            start_e:
 	            begin
-	                c_state <= #1 idle;
+	                c_state <= 0;
 	                cmd_ack <= #1 1'b1;
 	                scl_oen <= #1 1'b0; // set SCL low
 	                sda_oen <= #1 1'b0; // keep SDA low
@@ -452,7 +452,7 @@ module i2c_master_bit_ctrl(
 
 	            stop_d:
 	            begin
-	                c_state <= #1 idle;
+	                c_state <= 0;
 	                cmd_ack <= #1 1'b1;
 	                scl_oen <= #1 1'b1; // keep SCL high
 	                sda_oen <= #1 1'b1; // set SDA high
@@ -486,7 +486,7 @@ module i2c_master_bit_ctrl(
 
 	            rd_d:
 	            begin
-	                c_state <= #1 idle;
+	                c_state <= 0;
 	                cmd_ack <= #1 1'b1;
 	                scl_oen <= #1 1'b0; // set SCL low
 	                sda_oen <= #1 1'b1; // keep SDA tri-stated
@@ -520,7 +520,7 @@ module i2c_master_bit_ctrl(
 
 	            wr_d:
 	            begin
-	                c_state <= #1 idle;
+	                c_state <= 0;
 	                cmd_ack <= #1 1'b1;
 	                scl_oen <= #1 1'b0; // set SCL low
 	                sda_oen <= #1 din;
@@ -532,7 +532,7 @@ module i2c_master_bit_ctrl(
 
 
 	// assign scl and sda output (always gnd)
-	assign scl_o = 1;
+	assign scl_o = 1'b0;
 	assign sda_o = 1'b0;
 
 endmodule
