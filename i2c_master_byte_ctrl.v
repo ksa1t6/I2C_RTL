@@ -207,7 +207,7 @@ module i2c_master_byte_ctrl (
 	        ld       <= #1 1'b0;
 	        cmd_ack  <= #1 1'b0;
 	        c_state  <= #1 ST_IDLE;
-	        ack_out <= #7 1'b0;
+	        ack_out  <= #1 1'b0;
 	    end
 	  else if (rst | i2c_al)
 	   begin
@@ -217,7 +217,7 @@ module i2c_master_byte_ctrl (
 	       ld       <= #1 1'b0;
 	       cmd_ack  <= #1 1'b0;
 	       c_state  <= #1 ST_IDLE;
-	       ack_out <= #7 1'b0;
+	       ack_out  <= #1 1'b0;
 	   end
 	else
 	  begin
@@ -238,7 +238,7 @@ module i2c_master_byte_ctrl (
 	                  end
 	                else if (read)
 	                  begin
-	                      c_state  <= #1 ST_READ;
+	                      c_state  <= 0;
 	                      core_cmd <= #1 `I2C_CMD_READ;
 	                  end
 	                else if (write)
@@ -260,7 +260,7 @@ module i2c_master_byte_ctrl (
 	            begin
 	                if (read)
 	                  begin
-	                      c_state  <= #1 ST_READ;
+	                      c_state  <= 0;
 	                      core_cmd <= #1 `I2C_CMD_READ;
 	                  end
 	                else
@@ -296,7 +296,7 @@ module i2c_master_byte_ctrl (
 	                  end
 	                else
 	                  begin
-	                      c_state  <= #1 ST_READ;       // stay in same state
+	                      c_state  <= 0;       // stay in same state
 	                      core_cmd <= #1 `I2C_CMD_READ; // read next bit
 	                  end
 
