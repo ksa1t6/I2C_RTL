@@ -255,7 +255,7 @@ module i2c_master_bit_ctrl(
 	        sSDA <= #1 sda_i;
 
 	        dSCL <= #1 sSCL;
-	        dSDA <= #1 sSDA;
+	        dSDA <= #5 sSDA;
 	    end
 
 	// detect start condition => detect falling edge on SDA while SCL is high
@@ -428,7 +428,7 @@ module i2c_master_bit_ctrl(
 	            // stop
 	            stop_a:
 	            begin
-	                c_state <= 0;
+	                c_state <= #1 stop_b;
 	                scl_oen <= #1 1'b0; // keep SCL low
 	                sda_oen <= #1 1'b0; // set SDA low
 	                sda_chk <= #1 1'b0; // don't check SDA output
