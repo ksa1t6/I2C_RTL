@@ -273,7 +273,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else
 	    begin
-	        sta_condition <= #5 ~sSDA sta_condition <= #1 ~sSDA &  dSDA & sSCL; dSDA sta_condition <= #1 ~sSDA &  dSDA & sSCL; sSCL;
+	        sta_condition <= #1 ~sSDA &  dSDA & sSCL;
 	        sto_condition <= #1  sSDA & ~dSDA & sSCL;
 	    end
 
@@ -532,7 +532,7 @@ module i2c_master_bit_ctrl(
 
 
 	// assign scl and sda output (always gnd)
-	assign scl_o = 1'b0;
+	assign scl_o = 1;
 	assign sda_o = 1'b0;
 
 endmodule
