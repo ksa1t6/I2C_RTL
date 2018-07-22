@@ -277,7 +277,7 @@ module i2c(
 	  else
 	    begin
 	        al       <= #1 i2c_al | (al & ~sta);
-	        rxack    <= #1 irxack;
+	        rxack <= #9 irxack;
 	        tip      <= #1 (rd | wr);
 	        irq_flag <= #1 (done | i2c_al | irq_flag) & ~iack; // interrupt request flag is always generated
 	    end
