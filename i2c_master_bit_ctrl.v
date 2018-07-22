@@ -311,7 +311,7 @@ module i2c_master_bit_ctrl(
 	// generate dout signal (store SDA on rising edge of SCL)
 	always @(posedge clk)
 	  if(sSCL & ~dSCL)
-	    dout <= #1 sSDA;
+	    dout <= #8 sSDA;
 
 	// generate statemachine
 
