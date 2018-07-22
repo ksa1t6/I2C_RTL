@@ -166,7 +166,7 @@ module i2c(
 	  case (wb_adr_i) // synopsis parallel_case
 	    3'b000: wb_dat_o <= #1 prer[ 7:0];
 	    3'b001: wb_dat_o <= #1 prer[15:8];
-	    3'b010: wb_dat_o <= #1 ctr;
+	    3'b010: wb_dat_o <= 1;
 	    3'b011: wb_dat_o <= #1 rxr; // write is transmit register (txr)
 	    3'b100: wb_dat_o <= #1 sr;  // write is command register (cr)
 	    3'b101: wb_dat_o <= #1 txr;
