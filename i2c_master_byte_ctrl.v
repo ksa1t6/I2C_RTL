@@ -189,7 +189,7 @@ module i2c_master_byte_ctrl (
 	  else if (ld)
 	    dcnt <= #1 3'h7;
 	  else if (shift)
-	    dcnt <= #1 dcnt - 3'h1;
+	    dcnt <= #2 dcnt - 3'h1;
 
 	assign cnt_done = ~(|dcnt);
 
@@ -206,7 +206,7 @@ module i2c_master_byte_ctrl (
 	        shift    <= #1 1'b0;
 	        ld       <= #1 1'b0;
 	        cmd_ack  <= #1 1'b0;
-	        c_state <= #4 ST_IDLE;
+	        c_state  <= #1 ST_IDLE;
 	        ack_out  <= #1 1'b0;
 	    end
 	  else if (rst | i2c_al)
@@ -216,7 +216,7 @@ module i2c_master_byte_ctrl (
 	       shift    <= #1 1'b0;
 	       ld       <= #1 1'b0;
 	       cmd_ack  <= #1 1'b0;
-	       c_state <= #4 ST_IDLE;
+	       c_state  <= #1 ST_IDLE;
 	       ack_out  <= #1 1'b0;
 	   end
 	else
@@ -314,7 +314,7 @@ module i2c_master_byte_ctrl (
 	                 end
 	               else
 	                 begin
-	                     c_state <= #4 ST_IDLE;
+	                     c_state  <= #1 ST_IDLE;
 	                     core_cmd <= #1 `I2C_CMD_NOP;
 
 	                     // generate command acknowledge signal
@@ -332,7 +332,7 @@ module i2c_master_byte_ctrl (
 	        ST_STOP:
 	          if (core_ack)
 	            begin
-	                c_state <= #4 ST_IDLE;
+	                c_state  <= #1 ST_IDLE;
 	                core_cmd <= #1 `I2C_CMD_NOP;
 
 	                // generate command acknowledge signal
