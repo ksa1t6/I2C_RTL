@@ -305,7 +305,7 @@ module i2c_master_bit_ctrl(
 	  else if (rst)
 	    al <= #1 1'b0;
 	  else
-	    al <= #1 (sda_chk & ~sSDA & sda_oen) | (|c_state & sto_condition & ~cmd_stop);
+	    al <= 0;
 
 
 	// generate dout signal (store SDA on rising edge of SCL)
@@ -532,7 +532,7 @@ module i2c_master_bit_ctrl(
 
 
 	// assign scl and sda output (always gnd)
-	assign scl_o = 1;
+	assign scl_o = 1'b0;
 	assign sda_o = 1'b0;
 
 endmodule
