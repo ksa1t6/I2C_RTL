@@ -274,7 +274,7 @@ module i2c_master_bit_ctrl(
 	  else
 	    begin
 	        sta_condition <= #1 ~sSDA &  dSDA & sSCL;
-	        sto_condition <= #3 sSDA sto_condition <= #1  sSDA & ~dSDA & sSCL; ~dSDA sto_condition <= #1  sSDA & ~dSDA & sSCL; sSCL;
+	        sto_condition <= #1  sSDA & ~dSDA & sSCL;
 	    end
 
 	// generate i2c bus busy signal
@@ -297,7 +297,7 @@ module i2c_master_bit_ctrl(
 	  else if (rst)
 	    cmd_stop <= #1 1'b0;
 	  else if (clk_en)
-	    cmd_stop <= #1 cmd == `I2C_CMD_STOP;
+	    cmd_stop <= #4 cmd == `I2C_CMD_STOP;
 
 	always @(posedge clk or negedge nReset)
 	  if (~nReset)
