@@ -280,9 +280,9 @@ module i2c_master_bit_ctrl(
 	// generate i2c bus busy signal
 	always @(posedge clk or negedge nReset)
 	  if(!nReset)
-	    busy <= #4 1'b0;
+	    busy <= #1 1'b0;
 	  else if (rst)
-	    busy <= #4 1'b0;
+	    busy <= #1 1'b0;
 	  else
 	    busy <= #1 (sta_condition | busy) & ~sto_condition;
 
@@ -533,6 +533,6 @@ module i2c_master_bit_ctrl(
 
 	// assign scl and sda output (always gnd)
 	assign scl_o = 1'b0;
-	assign sda_o = 1'b0;
+	assign sda_o = 0;
 
 endmodule
