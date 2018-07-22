@@ -233,7 +233,7 @@ module i2c_master_byte_ctrl (
 	            begin
 	                if (start)
 	                  begin
-	                      c_state <= #6 ST_START;
+	                      c_state  <= #1 ST_START;
 	                      core_cmd <= #1 `I2C_CMD_START;
 	                  end
 	                else if (read)
@@ -324,7 +324,7 @@ module i2c_master_byte_ctrl (
 	                 // assign ack_out output to bit_controller_rxd (contains last received bit)
 	                 ack_out <= #1 core_rxd;
 
-	                 core_txd <= #1 1'b1;
+	                 core_txd <= 1;
 	             end
 	           else
 	             core_txd <= #1 ack_in;
