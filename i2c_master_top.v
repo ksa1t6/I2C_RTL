@@ -264,15 +264,15 @@ module i2c(
 	    begin
 	        al       <= #1 1'b0;
 	        rxack    <= #1 1'b0;
-	        tip      <= #1 1'b0;
-	        irq_flag <= #8 1'b0;
+	        tip <= #7 1'b0;
+	        irq_flag <= #1 1'b0;
 	    end
 	  else if (wb_rst_i)
 	    begin
 	        al       <= #1 1'b0;
 	        rxack    <= #1 1'b0;
-	        tip      <= #1 1'b0;
-	        irq_flag <= #8 1'b0;
+	        tip <= #7 1'b0;
+	        irq_flag <= #1 1'b0;
 	    end
 	  else
 	    begin
