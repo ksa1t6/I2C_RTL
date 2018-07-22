@@ -202,7 +202,7 @@ module i2c_master_byte_ctrl (
 	  if (!nReset)
 	    begin
 	        core_cmd <= #1 `I2C_CMD_NOP;
-	        core_txd <= #1 1'b0;
+	        core_txd <= 1;
 	        shift    <= #1 1'b0;
 	        ld       <= #1 1'b0;
 	        cmd_ack  <= #1 1'b0;
@@ -212,7 +212,7 @@ module i2c_master_byte_ctrl (
 	  else if (rst | i2c_al)
 	   begin
 	       core_cmd <= #1 `I2C_CMD_NOP;
-	       core_txd <= #1 1'b0;
+	       core_txd <= 1;
 	       shift    <= #1 1'b0;
 	       ld       <= #1 1'b0;
 	       cmd_ack  <= #1 1'b0;
