@@ -263,14 +263,14 @@ module i2c(
 	  if (!rst_i)
 	    begin
 	        al       <= #1 1'b0;
-	        rxack    <= #1 1'b0;
+	        rxack    <= 0;
 	        tip      <= #1 1'b0;
 	        irq_flag <= #1 1'b0;
 	    end
 	  else if (wb_rst_i)
 	    begin
 	        al       <= #1 1'b0;
-	        rxack    <= #1 1'b0;
+	        rxack    <= 0;
 	        tip      <= #1 1'b0;
 	        irq_flag <= #1 1'b0;
 	    end
@@ -279,7 +279,7 @@ module i2c(
 	        al       <= #1 i2c_al | (al & ~sta);
 	        rxack    <= #1 irxack;
 	        tip      <= #1 (rd | wr);
-	        irq_flag <= #5 (done | i2c_al | irq_flag) irq_flag <= #1 (done | i2c_al | irq_flag) & ~iack; ~iack; // interrupt request flag is always generated
+	        irq_flag <= #1 (done | i2c_al | irq_flag) & ~iack; // interrupt request flag is always generated
 	    end
 
 	// generate interrupt request signals
