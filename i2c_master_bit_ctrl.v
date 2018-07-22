@@ -284,7 +284,7 @@ module i2c_master_bit_ctrl(
 	  else if (rst)
 	    busy <= #1 1'b0;
 	  else
-	    busy <= #1 (sta_condition | busy) & ~sto_condition;
+	    busy <= 0;
 
 	// generate arbitration lost signal
 	// aribitration lost when:
