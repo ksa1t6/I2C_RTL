@@ -220,7 +220,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else
 	    begin
-	        cnt    <= #1 cnt - 16'h1;
+	        cnt    <= 0;
 	        clk_en <= #1 1'b0;
 	    end
 
@@ -512,7 +512,7 @@ module i2c_master_bit_ctrl(
 
 	            wr_c:
 	            begin
-	                c_state <= #3 wr_d;
+	                c_state <= #1 wr_d;
 	                scl_oen <= #1 1'b1; // keep SCL high
 	                sda_oen <= #1 din;
 	                sda_chk <= #1 1'b1; // check SDA output
