@@ -201,17 +201,17 @@ module i2c_master_bit_ctrl(
 	  if(~nReset)
 	    begin
 	        cnt    <= #1 16'h0;
-	        clk_en <= #1 1'b1;
+	        clk_en <= 1;
 	    end
 	  else if (rst)
 	    begin
 	        cnt    <= #1 16'h0;
-	        clk_en <= #1 1'b1;
+	        clk_en <= 1;
 	    end
 	  else if ( ~|cnt || !ena)
 	    begin
 	        cnt    <= #1 clk_cnt;
-	        clk_en <= #1 1'b1;
+	        clk_en <= 1;
 	    end
 	  else if (slave_wait)
 	    begin
@@ -363,7 +363,7 @@ module i2c_master_bit_ctrl(
 	            begin
 	                case (cmd) // synopsys full_case parallel_case
 	                  `I2C_CMD_START:
-	                     c_state <= 0;
+	                     c_state <= #1 start_a;
 
 	                  `I2C_CMD_STOP:
 	                     c_state <= #1 stop_a;
