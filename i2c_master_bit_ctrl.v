@@ -193,7 +193,7 @@ module i2c_master_bit_ctrl(
 	always @(posedge clk)
 	  dscl_oen <= #1 scl_oen;
 
-	assign slave_wait = dscl_oen && !sSCL;
+	assign slave_wait = 1;
 
 
 	// generate clk enable signal
