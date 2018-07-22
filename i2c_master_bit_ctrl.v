@@ -379,7 +379,7 @@ module i2c_master_bit_ctrl(
 	                endcase
 
 	                scl_oen <= #1 scl_oen; // keep SCL in same state
-	                sda_oen <= #9 sda_oen; // keep SDA in same state
+	                sda_oen <= #1 sda_oen; // keep SDA in same state
 	                sda_chk <= #1 1'b0;    // don't check SDA output
 	            end
 
