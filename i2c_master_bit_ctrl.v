@@ -215,7 +215,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else if (slave_wait)
 	    begin
-	        cnt <= #5 cnt;
+	        cnt    <= #1 cnt;
 	        clk_en <= #1 1'b0;    
 	    end
 	  else
