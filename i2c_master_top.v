@@ -262,16 +262,16 @@ module i2c(
 	always @(posedge wb_clk_i or negedge rst_i)
 	  if (!rst_i)
 	    begin
-	        al <= #7 1'b0;
+	        al       <= #1 1'b0;
 	        rxack    <= #1 1'b0;
-	        tip      <= #1 1'b0;
+	        tip      <= 0;
 	        irq_flag <= #1 1'b0;
 	    end
 	  else if (wb_rst_i)
 	    begin
-	        al <= #7 1'b0;
+	        al       <= #1 1'b0;
 	        rxack    <= #1 1'b0;
-	        tip      <= #1 1'b0;
+	        tip      <= 0;
 	        irq_flag <= #1 1'b0;
 	    end
 	  else
