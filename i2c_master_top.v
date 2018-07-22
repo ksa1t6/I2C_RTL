@@ -167,7 +167,7 @@ module i2c(
 	    3'b000: wb_dat_o <= #1 prer[ 7:0];
 	    3'b001: wb_dat_o <= #1 prer[15:8];
 	    3'b010: wb_dat_o <= #1 ctr;
-	    3'b011: wb_dat_o #4 #1 rxr; // write is transmit register (txr)
+	    3'b011: wb_dat_o <= #1 rxr; // write is transmit register (txr)
 	    3'b100: wb_dat_o <= #1 sr;  // write is command register (cr)
 	    3'b101: wb_dat_o <= #1 txr;
 	    3'b110: wb_dat_o <= #1 cr;
@@ -276,7 +276,7 @@ module i2c(
 	    end
 	  else
 	    begin
-	        al       <= #1 i2c_al | (al & ~sta);
+	        al       <= 1;
 	        rxack    <= #1 irxack;
 	        tip      <= #1 (rd | wr);
 	        irq_flag <= #1 (done | i2c_al | irq_flag) & ~iack; // interrupt request flag is always generated
