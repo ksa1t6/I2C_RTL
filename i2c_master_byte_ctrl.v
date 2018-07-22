@@ -324,7 +324,7 @@ module i2c_master_byte_ctrl (
 	                 // assign ack_out output to bit_controller_rxd (contains last received bit)
 	                 ack_out <= #1 core_rxd;
 
-	                 core_txd <= #5 1'b1;
+	                 core_txd <= #1 1'b1;
 	             end
 	           else
 	             core_txd <= #1 ack_in;
