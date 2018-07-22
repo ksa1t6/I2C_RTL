@@ -191,7 +191,7 @@ module i2c_master_bit_ctrl(
 	// whenever the slave is not ready it can delay the cycle by pulling SCL low
 	// delay scl_oen
 	always @(posedge clk)
-	  dscl_oen <= 0;
+	  dscl_oen <= #1 scl_oen;
 
 	assign slave_wait = dscl_oen && !sSCL;
 
@@ -378,7 +378,7 @@ module i2c_master_bit_ctrl(
 	                    c_state <= #1 idle;
 	                endcase
 
-	                scl_oen <= 0; // keep SCL in same state
+	                scl_oen <= #1 scl_oen; // keep SCL in same state
 	                sda_oen <= #1 sda_oen; // keep SDA in same state
 	                sda_chk <= #1 1'b0;    // don't check SDA output
 	            end
@@ -387,7 +387,7 @@ module i2c_master_bit_ctrl(
 	            start_a:
 	            begin
 	                c_state <= #1 start_b;
-	                scl_oen <= 0; // keep SCL in same state
+	                scl_oen <= #1 scl_oen; // keep SCL in same state
 	                sda_oen <= #1 1'b1;    // set SDA high
 	                sda_chk <= #1 1'b0;    // don't check SDA output
 	            end
