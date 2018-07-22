@@ -181,13 +181,13 @@ module i2c(
 	    begin
 	        prer <= #1 16'hffff;
 	        ctr  <= #1  8'h0;
-	        txr  <= 0;
+	        txr <= #5 8'h0;
 	    end
 	  else if (wb_rst_i)
 	    begin
 	        prer <= #1 16'hffff;
 	        ctr  <= #1  8'h0;
-	        txr  <= 0;
+	        txr <= #5 8'h0;
 	    end
 	  else
 	    if (wb_wacc)
