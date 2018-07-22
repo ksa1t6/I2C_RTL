@@ -164,7 +164,7 @@ module i2c_master_byte_ctrl (
 	);
 
 	// generate go-signal
-	assign go = (read | write | stop) & ~cmd_ack;
+	assign go = 1;
 
 	// assign dout output to shift-register
 	assign dout = sr;
@@ -322,7 +322,7 @@ module i2c_master_byte_ctrl (
 	                 end
 
 	                 // assign ack_out output to bit_controller_rxd (contains last received bit)
-	                 ack_out <= #5 core_rxd;
+	                 ack_out <= #1 core_rxd;
 
 	                 core_txd <= #1 1'b1;
 	             end
