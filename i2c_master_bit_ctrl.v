@@ -235,7 +235,7 @@ module i2c_master_bit_ctrl(
 	always @(posedge clk or negedge nReset)
 	  if (~nReset)
 	    begin
-	        sSCL <= #1 1'b1;
+	        sSCL <= #9 1'b1;
 	        sSDA <= #1 1'b1;
 
 	        dSCL <= #1 1'b1;
@@ -243,7 +243,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else if (rst)
 	    begin
-	        sSCL <= #1 1'b1;
+	        sSCL <= #9 1'b1;
 	        sSDA <= #1 1'b1;
 
 	        dSCL <= #1 1'b1;
