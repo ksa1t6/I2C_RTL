@@ -264,12 +264,12 @@ module i2c_master_bit_ctrl(
 	  if (~nReset)
 	    begin
 	        sta_condition <= #1 1'b0;
-	        sto_condition <= #1 1'b0;
+	        sto_condition <= 0;
 	    end
 	  else if (rst)
 	    begin
 	        sta_condition <= #1 1'b0;
-	        sto_condition <= #1 1'b0;
+	        sto_condition <= 0;
 	    end
 	  else
 	    begin
