@@ -205,7 +205,7 @@ module i2c_master_byte_ctrl (
 	        core_txd <= #1 1'b0;
 	        shift    <= #1 1'b0;
 	        ld       <= #1 1'b0;
-	        cmd_ack <= #4 1'b0;
+	        cmd_ack  <= #1 1'b0;
 	        c_state  <= #1 ST_IDLE;
 	        ack_out  <= #1 1'b0;
 	    end
@@ -215,7 +215,7 @@ module i2c_master_byte_ctrl (
 	       core_txd <= #1 1'b0;
 	       shift    <= #1 1'b0;
 	       ld       <= #1 1'b0;
-	       cmd_ack <= #4 1'b0;
+	       cmd_ack  <= #1 1'b0;
 	       c_state  <= #1 ST_IDLE;
 	       ack_out  <= #1 1'b0;
 	   end
@@ -225,7 +225,7 @@ module i2c_master_byte_ctrl (
 	      core_txd <= #1 sr[7];
 	      shift    <= #1 1'b0;
 	      ld       <= #1 1'b0;
-	      cmd_ack <= #4 1'b0;
+	      cmd_ack  <= #1 1'b0;
 
 	      case (c_state) // synopsys full_case parallel_case
 	        ST_IDLE:
@@ -244,7 +244,7 @@ module i2c_master_byte_ctrl (
 	                else if (write)
 	                  begin
 	                      c_state  <= #1 ST_WRITE;
-	                      core_cmd <= #1 `I2C_CMD_WRITE;
+	                      core_cmd <= #8 `I2C_CMD_WRITE;
 	                  end
 	                else // stop
 	                  begin
@@ -266,7 +266,7 @@ module i2c_master_byte_ctrl (
 	                else
 	                  begin
 	                      c_state  <= #1 ST_WRITE;
-	                      core_cmd <= #1 `I2C_CMD_WRITE;
+	                      core_cmd <= #8 `I2C_CMD_WRITE;
 	                  end
 
 	                ld <= #1 1'b1;
@@ -282,7 +282,7 @@ module i2c_master_byte_ctrl (
 	            else
 	              begin
 	                  c_state  <= #1 ST_WRITE;       // stay in same state
-	                  core_cmd <= #1 `I2C_CMD_WRITE; // write next bit
+	                  core_cmd <= #8 `I2C_CMD_WRITE; // write next bit
 	                  shift    <= #1 1'b1;
 	              end
 
@@ -292,7 +292,7 @@ module i2c_master_byte_ctrl (
 	                if (cnt_done)
 	                  begin
 	                      c_state  <= #1 ST_ACK;
-	                      core_cmd <= #1 `I2C_CMD_WRITE;
+	                      core_cmd <= #8 `I2C_CMD_WRITE;
 	                  end
 	                else
 	                  begin
