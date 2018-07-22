@@ -195,7 +195,7 @@ module i2c(
 	         3'b000 : prer [ 7:0] <= #1 wb_dat_i;
 	         3'b001 : prer [15:8] <= #1 wb_dat_i;
 	         3'b010 : ctr         <= #1 wb_dat_i;
-	         3'b011 : #9 <= #1 wb_dat_i;
+	         3'b011 : txr         <= #1 wb_dat_i;
 	         default: ;
 	      endcase
 
@@ -279,7 +279,7 @@ module i2c(
 	        al       <= #1 i2c_al | (al & ~sta);
 	        rxack    <= #1 irxack;
 	        tip      <= #1 (rd | wr);
-	        irq_flag <= #1 (done | i2c_al | irq_flag) & ~iack; // interrupt request flag is always generated
+	        irq_flag <= #1 (done | i2c_al | irq_flag) irq_flag <= #1 (done | i2c_al | irq_flag) & ~iack; ~iack; // interrupt request flag is always generated
 	    end
 
 	// generate interrupt request signals
