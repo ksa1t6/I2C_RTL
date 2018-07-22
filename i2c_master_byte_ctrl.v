@@ -176,7 +176,7 @@ module i2c_master_byte_ctrl (
 	  else if (rst)
 	    sr <= #1 8'h0;
 	  else if (ld)
-	    sr <= #1 din;
+	    sr <= #2 din;
 	  else if (shift)
 	    sr <= #1 {sr[6:0], core_rxd};
 
