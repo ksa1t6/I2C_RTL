@@ -507,7 +507,7 @@ module i2c_master_bit_ctrl(
 	                c_state <= #1 wr_c;
 	                scl_oen <= #1 1'b1; // set SCL high
 	                sda_oen <= #1 din;  // keep SDA
-	                sda_chk <= 1; // check SDA output
+	                sda_chk <= #1 1'b1; // check SDA output
 	            end
 
 	            wr_c:
@@ -515,7 +515,7 @@ module i2c_master_bit_ctrl(
 	                c_state <= #1 wr_d;
 	                scl_oen <= #1 1'b1; // keep SCL high
 	                sda_oen <= #1 din;
-	                sda_chk <= 1; // check SDA output
+	                sda_chk <= #1 1'b1; // check SDA output
 	            end
 
 	            wr_d:
