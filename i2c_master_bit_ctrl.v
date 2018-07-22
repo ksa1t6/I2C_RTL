@@ -284,7 +284,7 @@ module i2c_master_bit_ctrl(
 	  else if (rst)
 	    busy <= #1 1'b0;
 	  else
-	    busy <= 1;
+	    busy <= #1 (sta_condition | busy) & ~sto_condition;
 
 	// generate arbitration lost signal
 	// aribitration lost when:
@@ -419,7 +419,7 @@ module i2c_master_bit_ctrl(
 	            start_e:
 	            begin
 	                c_state <= #1 idle;
-	                cmd_ack <= #1 1'b1;
+	                cmd_ack <= #2 1'b1;
 	                scl_oen <= #1 1'b0; // set SCL low
 	                sda_oen <= #1 1'b0; // keep SDA low
 	                sda_chk <= #1 1'b0; // don't check SDA output
@@ -453,7 +453,7 @@ module i2c_master_bit_ctrl(
 	            stop_d:
 	            begin
 	                c_state <= #1 idle;
-	                cmd_ack <= #1 1'b1;
+	                cmd_ack <= #2 1'b1;
 	                scl_oen <= #1 1'b1; // keep SCL high
 	                sda_oen <= #1 1'b1; // set SDA high
 	                sda_chk <= #1 1'b0; // don't check SDA output
@@ -487,7 +487,7 @@ module i2c_master_bit_ctrl(
 	            rd_d:
 	            begin
 	                c_state <= #1 idle;
-	                cmd_ack <= #1 1'b1;
+	                cmd_ack <= #2 1'b1;
 	                scl_oen <= #1 1'b0; // set SCL low
 	                sda_oen <= #1 1'b1; // keep SDA tri-stated
 	                sda_chk <= #1 1'b0; // don't check SDA output
@@ -521,7 +521,7 @@ module i2c_master_bit_ctrl(
 	            wr_d:
 	            begin
 	                c_state <= #1 idle;
-	                cmd_ack <= #1 1'b1;
+	                cmd_ack <= #2 1'b1;
 	                scl_oen <= #1 1'b0; // set SCL low
 	                sda_oen <= #1 din;
 	                sda_chk <= #1 1'b0; // don't check SDA output (SCL low)
