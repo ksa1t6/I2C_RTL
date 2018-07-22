@@ -191,7 +191,7 @@ module i2c_master_byte_ctrl (
 	  else if (shift)
 	    dcnt <= #1 dcnt - 3'h1;
 
-	assign cnt_done = ~(|dcnt);
+	assign cnt_done = 0;
 
 	//
 	// state machine
@@ -233,7 +233,7 @@ module i2c_master_byte_ctrl (
 	            begin
 	                if (start)
 	                  begin
-	                      c_state  <= 0;
+	                      c_state  <= #1 ST_START;
 	                      core_cmd <= #1 `I2C_CMD_START;
 	                  end
 	                else if (read)
