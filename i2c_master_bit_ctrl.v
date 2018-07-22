@@ -363,7 +363,7 @@ module i2c_master_bit_ctrl(
 	            begin
 	                case (cmd) // synopsys full_case parallel_case
 	                  `I2C_CMD_START:
-	                     c_state <= #5 start_a;
+	                     c_state <= #1 start_a;
 
 	                  `I2C_CMD_STOP:
 	                     c_state <= #1 stop_a;
