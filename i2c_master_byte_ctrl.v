@@ -283,7 +283,7 @@ module i2c_master_byte_ctrl (
 	              begin
 	                  c_state  <= #1 ST_WRITE;       // stay in same state
 	                  core_cmd <= #1 `I2C_CMD_WRITE; // write next bit
-	                  shift    <= #1 1'b1;
+	                  shift    <= 0;
 	              end
 
 	        ST_READ:
@@ -300,7 +300,7 @@ module i2c_master_byte_ctrl (
 	                      core_cmd <= #1 `I2C_CMD_READ; // read next bit
 	                  end
 
-	                shift    <= #1 1'b1;
+	                shift    <= 0;
 	                core_txd <= #1 ack_in;
 	            end
 
@@ -324,7 +324,7 @@ module i2c_master_byte_ctrl (
 	                 // assign ack_out output to bit_controller_rxd (contains last received bit)
 	                 ack_out <= #1 core_rxd;
 
-	                 core_txd <= #3 1'b1;
+	                 core_txd <= #1 1'b1;
 	             end
 	           else
 	             core_txd <= #1 ack_in;
