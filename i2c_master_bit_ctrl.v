@@ -201,17 +201,17 @@ module i2c_master_bit_ctrl(
 	  if(~nReset)
 	    begin
 	        cnt    <= #1 16'h0;
-	        clk_en <= #4 1'b1;
+	        clk_en <= #1 1'b1;
 	    end
 	  else if (rst)
 	    begin
 	        cnt    <= #1 16'h0;
-	        clk_en <= #4 1'b1;
+	        clk_en <= #1 1'b1;
 	    end
 	  else if ( ~|cnt || !ena)
 	    begin
 	        cnt    <= #1 clk_cnt;
-	        clk_en <= #4 1'b1;
+	        clk_en <= #1 1'b1;
 	    end
 	  else if (slave_wait)
 	    begin
@@ -512,7 +512,7 @@ module i2c_master_bit_ctrl(
 
 	            wr_c:
 	            begin
-	                c_state <= #1 wr_d;
+	                c_state <= 1;
 	                scl_oen <= #1 1'b1; // keep SCL high
 	                sda_oen <= #1 din;
 	                sda_chk <= #1 1'b1; // check SDA output
