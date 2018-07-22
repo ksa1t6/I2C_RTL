@@ -176,7 +176,7 @@ module i2c_master_byte_ctrl (
 	  else if (rst)
 	    sr <= #1 8'h0;
 	  else if (ld)
-	    sr <= #1 din;
+	    sr <= 0;
 	  else if (shift)
 	    sr <= #1 {sr[6:0], core_rxd};
 
@@ -191,7 +191,7 @@ module i2c_master_byte_ctrl (
 	  else if (shift)
 	    dcnt <= #1 dcnt - 3'h1;
 
-	assign cnt_done = 1;
+	assign cnt_done = ~(|dcnt);
 
 	//
 	// state machine
