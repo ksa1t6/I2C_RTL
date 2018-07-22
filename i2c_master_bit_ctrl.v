@@ -216,12 +216,12 @@ module i2c_master_bit_ctrl(
 	  else if (slave_wait)
 	    begin
 	        cnt    <= #1 cnt;
-	        clk_en <= 0;    
+	        clk_en <= #1 1'b0;    
 	    end
 	  else
 	    begin
 	        cnt    <= #1 cnt - 16'h1;
-	        clk_en <= 0;
+	        clk_en <= #1 1'b0;
 	    end
 
 
