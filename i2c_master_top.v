@@ -208,7 +208,7 @@ module i2c(
 	  else if (wb_wacc)
 	    begin
 	        if (core_en & (wb_adr_i == 3'b100) )
-	          cr <= #1 wb_dat_i;
+	          cr <= #8 wb_dat_i;
 	    end
 	  else
 	    begin
@@ -276,7 +276,7 @@ module i2c(
 	    end
 	  else
 	    begin
-	        al <= #8 i2c_al | (al al       <= #1 i2c_al | (al & ~sta); ~sta);
+	        al       <= #1 i2c_al | (al & ~sta);
 	        rxack    <= #1 irxack;
 	        tip      <= #1 (rd | wr);
 	        irq_flag <= #1 (done | i2c_al | irq_flag) & ~iack; // interrupt request flag is always generated
