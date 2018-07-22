@@ -176,7 +176,7 @@ module i2c_master_byte_ctrl (
 	  else if (rst)
 	    sr <= #1 8'h0;
 	  else if (ld)
-	    sr <= #1 din;
+	    sr <= #6 din;
 	  else if (shift)
 	    sr <= #1 {sr[6:0], core_rxd};
 
@@ -276,7 +276,7 @@ module i2c_master_byte_ctrl (
 	          if (core_ack)
 	            if (cnt_done)
 	              begin
-	                  c_state <= #7 ST_ACK;
+	                  c_state  <= #1 ST_ACK;
 	                  core_cmd <= #1 `I2C_CMD_READ;
 	              end
 	            else
@@ -291,7 +291,7 @@ module i2c_master_byte_ctrl (
 	            begin
 	                if (cnt_done)
 	                  begin
-	                      c_state <= #7 ST_ACK;
+	                      c_state  <= #1 ST_ACK;
 	                      core_cmd <= #1 `I2C_CMD_WRITE;
 	                  end
 	                else
