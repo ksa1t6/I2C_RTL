@@ -216,12 +216,12 @@ module i2c_master_bit_ctrl(
 	  else if (slave_wait)
 	    begin
 	        cnt    <= #1 cnt;
-	        clk_en <= 1;    
+	        clk_en <= #1 1'b0;    
 	    end
 	  else
 	    begin
 	        cnt    <= #1 cnt - 16'h1;
-	        clk_en <= 1;
+	        clk_en <= #1 1'b0;
 	    end
 
 
@@ -532,7 +532,7 @@ module i2c_master_bit_ctrl(
 
 
 	// assign scl and sda output (always gnd)
-	assign scl_o = 1'b0;
+	assign scl_o = 0;
 	assign sda_o = 1'b0;
 
 endmodule
