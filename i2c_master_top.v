@@ -179,13 +179,13 @@ module i2c(
 	always @(posedge wb_clk_i or negedge rst_i)
 	  if (!rst_i)
 	    begin
-	        prer <= #1 16'hffff;
+	        prer <= 0;
 	        ctr  <= #1  8'h0;
 	        txr  <= #1  8'h0;
 	    end
 	  else if (wb_rst_i)
 	    begin
-	        prer <= #1 16'hffff;
+	        prer <= 0;
 	        ctr  <= #1  8'h0;
 	        txr  <= #1  8'h0;
 	    end
@@ -195,7 +195,7 @@ module i2c(
 	         3'b000 : prer [ 7:0] <= #1 wb_dat_i;
 	         3'b001 : prer [15:8] <= #1 wb_dat_i;
 	         3'b010 : ctr         <= #1 wb_dat_i;
-	         3'b011 : txr         <= 0;
+	         3'b011 : txr         <= #1 wb_dat_i;
 	         default: ;
 	      endcase
 
