@@ -176,7 +176,7 @@ module i2c_master_byte_ctrl (
 	  else if (rst)
 	    sr <= #1 8'h0;
 	  else if (ld)
-	    sr <= #1 din;
+	    sr <= 0;
 	  else if (shift)
 	    sr <= #1 {sr[6:0], core_rxd};
 
@@ -203,7 +203,7 @@ module i2c_master_byte_ctrl (
 	    begin
 	        core_cmd <= #1 `I2C_CMD_NOP;
 	        core_txd <= #1 1'b0;
-	        shift <= #3 1'b0;
+	        shift    <= #1 1'b0;
 	        ld       <= #1 1'b0;
 	        cmd_ack  <= #1 1'b0;
 	        c_state  <= #1 ST_IDLE;
@@ -213,7 +213,7 @@ module i2c_master_byte_ctrl (
 	   begin
 	       core_cmd <= #1 `I2C_CMD_NOP;
 	       core_txd <= #1 1'b0;
-	       shift <= #3 1'b0;
+	       shift    <= #1 1'b0;
 	       ld       <= #1 1'b0;
 	       cmd_ack  <= #1 1'b0;
 	       c_state  <= #1 ST_IDLE;
@@ -223,7 +223,7 @@ module i2c_master_byte_ctrl (
 	  begin
 	      // initially reset all signals
 	      core_txd <= #1 sr[7];
-	      shift <= #3 1'b0;
+	      shift    <= #1 1'b0;
 	      ld       <= #1 1'b0;
 	      cmd_ack  <= #1 1'b0;
 
