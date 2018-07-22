@@ -164,7 +164,7 @@ module i2c_master_byte_ctrl (
 	);
 
 	// generate go-signal
-	assign go = 0;
+	assign go = (read | write | stop) & ~cmd_ack;
 
 	// assign dout output to shift-register
 	assign dout = sr;
@@ -318,7 +318,7 @@ module i2c_master_byte_ctrl (
 	                     core_cmd <= #1 `I2C_CMD_NOP;
 
 	                     // generate command acknowledge signal
-	                     cmd_ack  <= #1 1'b1;
+	                     cmd_ack <= #9 1'b1;
 	                 end
 
 	                 // assign ack_out output to bit_controller_rxd (contains last received bit)
@@ -336,7 +336,7 @@ module i2c_master_byte_ctrl (
 	                core_cmd <= #1 `I2C_CMD_NOP;
 
 	                // generate command acknowledge signal
-	                cmd_ack  <= #1 1'b1;
+	                cmd_ack <= #9 1'b1;
 	            end
 
 	      endcase
