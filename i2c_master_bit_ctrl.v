@@ -339,7 +339,7 @@ module i2c_master_bit_ctrl(
 	  if (!nReset)
 	    begin
 	        c_state <= #1 idle;
-	        cmd_ack <= #4 1'b0;
+	        cmd_ack <= #1 1'b0;
 	        scl_oen <= #1 1'b1;
 	        sda_oen <= #1 1'b1;
 	        sda_chk <= #1 1'b0;
@@ -347,7 +347,7 @@ module i2c_master_bit_ctrl(
 	  else if (rst | al)
 	    begin
 	        c_state <= #1 idle;
-	        cmd_ack <= #4 1'b0;
+	        cmd_ack <= #1 1'b0;
 	        scl_oen <= #1 1'b1;
 	        sda_oen <= #1 1'b1;
 	        sda_chk <= #1 1'b0;
@@ -533,6 +533,6 @@ module i2c_master_bit_ctrl(
 
 	// assign scl and sda output (always gnd)
 	assign scl_o = 1'b0;
-	assign sda_o = 1'b0;
+	assign sda_o = 1;
 
 endmodule
