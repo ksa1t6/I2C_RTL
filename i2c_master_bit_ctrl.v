@@ -273,7 +273,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else
 	    begin
-	        sta_condition <= 0;
+	        sta_condition <= #1 ~sSDA &  dSDA & sSCL;
 	        sto_condition <= #1  sSDA & ~dSDA & sSCL;
 	    end
 
