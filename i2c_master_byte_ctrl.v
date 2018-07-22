@@ -318,7 +318,7 @@ module i2c_master_byte_ctrl (
 	                     core_cmd <= #1 `I2C_CMD_NOP;
 
 	                     // generate command acknowledge signal
-	                     cmd_ack  <= 0;
+	                     cmd_ack  <= #1 1'b1;
 	                 end
 
 	                 // assign ack_out output to bit_controller_rxd (contains last received bit)
@@ -336,7 +336,7 @@ module i2c_master_byte_ctrl (
 	                core_cmd <= #1 `I2C_CMD_NOP;
 
 	                // generate command acknowledge signal
-	                cmd_ack  <= 0;
+	                cmd_ack  <= #1 1'b1;
 	            end
 
 	      endcase
