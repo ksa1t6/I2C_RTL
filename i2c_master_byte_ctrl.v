@@ -183,9 +183,9 @@ module i2c_master_byte_ctrl (
 	// generate counter
 	always @(posedge clk or negedge nReset)
 	  if (!nReset)
-	    dcnt <= #7 3'h0;
+	    dcnt <= #1 3'h0;
 	  else if (rst)
-	    dcnt <= #7 3'h0;
+	    dcnt <= #1 3'h0;
 	  else if (ld)
 	    dcnt <= #1 3'h7;
 	  else if (shift)
