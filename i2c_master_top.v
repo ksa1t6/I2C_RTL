@@ -262,14 +262,14 @@ module i2c(
 	always @(posedge wb_clk_i or negedge rst_i)
 	  if (!rst_i)
 	    begin
-	        al       <= #1 1'b0;
+	        al       <= 0;
 	        rxack    <= #1 1'b0;
 	        tip      <= #1 1'b0;
 	        irq_flag <= #1 1'b0;
 	    end
 	  else if (wb_rst_i)
 	    begin
-	        al       <= #1 1'b0;
+	        al       <= 0;
 	        rxack    <= #1 1'b0;
 	        tip      <= #1 1'b0;
 	        irq_flag <= #1 1'b0;
@@ -289,7 +289,7 @@ module i2c(
 	  else if (wb_rst_i)
 	    wb_inta_o <= #1 1'b0;
 	  else
-	    wb_inta_o <= #9 irq_flag wb_inta_o <= #1 irq_flag && ien;wb_inta_o <= #1 irq_flag && ien; ien; // interrupt signal is only generated when IEN (interrupt enable bit is set)
+	    wb_inta_o <= #1 irq_flag && ien; // interrupt signal is only generated when IEN (interrupt enable bit is set)
 
 	// assign status register bits
 	assign sr[7]   = rxack;
