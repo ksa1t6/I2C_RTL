@@ -172,9 +172,9 @@ module i2c_master_byte_ctrl (
 	// generate shift register
 	always @(posedge clk or negedge nReset)
 	  if (!nReset)
-	    sr <= #2 8'h0;
+	    sr <= #1 8'h0;
 	  else if (rst)
-	    sr <= #2 8'h0;
+	    sr <= #1 8'h0;
 	  else if (ld)
 	    sr <= #1 din;
 	  else if (shift)
