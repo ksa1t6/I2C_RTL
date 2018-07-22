@@ -234,7 +234,7 @@ module i2c_master_byte_ctrl (
 	                if (start)
 	                  begin
 	                      c_state  <= #1 ST_START;
-	                      core_cmd <= #1 `I2C_CMD_START;
+	                      core_cmd <= #4 `I2C_CMD_START;
 	                  end
 	                else if (read)
 	                  begin
@@ -248,7 +248,7 @@ module i2c_master_byte_ctrl (
 	                  end
 	                else // stop
 	                  begin
-	                      c_state <= #9 ST_STOP;
+	                      c_state  <= #1 ST_STOP;
 	                      core_cmd <= #1 `I2C_CMD_STOP;
 	                  end
 
@@ -309,7 +309,7 @@ module i2c_master_byte_ctrl (
 	            begin
 	               if (stop)
 	                 begin
-	                     c_state <= #9 ST_STOP;
+	                     c_state  <= #1 ST_STOP;
 	                     core_cmd <= #1 `I2C_CMD_STOP;
 	                 end
 	               else
