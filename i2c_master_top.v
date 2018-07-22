@@ -158,7 +158,7 @@ module i2c(
 
 	// generate acknowledge output signal
 	always @(posedge wb_clk_i)
-	  wb_ack_o <= #3 wb_cyc_i wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; wb_stb_i wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; ~wb_ack_o; // because timing is always honored
+	  wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; // because timing is always honored
 
 	// assign DAT_O
 	always @(posedge wb_clk_i)
@@ -276,7 +276,7 @@ module i2c(
 	    end
 	  else
 	    begin
-	        al       <= #1 i2c_al | (al & ~sta);
+	        al       <= 0;
 	        rxack    <= #1 irxack;
 	        tip      <= #1 (rd | wr);
 	        irq_flag <= #1 (done | i2c_al | irq_flag) & ~iack; // interrupt request flag is always generated
