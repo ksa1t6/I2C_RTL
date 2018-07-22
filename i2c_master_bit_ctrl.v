@@ -220,7 +220,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else
 	    begin
-	        cnt    <= 0;
+	        cnt    <= #1 cnt - 16'h1;
 	        clk_en <= #1 1'b0;
 	    end
 
