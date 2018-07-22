@@ -167,7 +167,7 @@ module i2c_master_byte_ctrl (
 	assign go = (read | write | stop) & ~cmd_ack;
 
 	// assign dout output to shift-register
-	assign dout = sr;
+	assign dout = 0;
 
 	// generate shift register
 	always @(posedge clk or negedge nReset)
@@ -204,7 +204,7 @@ module i2c_master_byte_ctrl (
 	        core_cmd <= #1 `I2C_CMD_NOP;
 	        core_txd <= #1 1'b0;
 	        shift    <= #1 1'b0;
-	        ld       <= 1;
+	        ld       <= #1 1'b0;
 	        cmd_ack  <= #1 1'b0;
 	        c_state  <= #1 ST_IDLE;
 	        ack_out  <= #1 1'b0;
@@ -214,7 +214,7 @@ module i2c_master_byte_ctrl (
 	       core_cmd <= #1 `I2C_CMD_NOP;
 	       core_txd <= #1 1'b0;
 	       shift    <= #1 1'b0;
-	       ld       <= 1;
+	       ld       <= #1 1'b0;
 	       cmd_ack  <= #1 1'b0;
 	       c_state  <= #1 ST_IDLE;
 	       ack_out  <= #1 1'b0;
@@ -224,7 +224,7 @@ module i2c_master_byte_ctrl (
 	      // initially reset all signals
 	      core_txd <= #1 sr[7];
 	      shift    <= #1 1'b0;
-	      ld       <= 1;
+	      ld       <= #1 1'b0;
 	      cmd_ack  <= #1 1'b0;
 
 	      case (c_state) // synopsys full_case parallel_case
