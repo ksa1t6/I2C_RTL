@@ -289,7 +289,7 @@ module i2c(
 	  else if (wb_rst_i)
 	    wb_inta_o <= #1 1'b0;
 	  else
-	    wb_inta_o <= #8 irq_flag wb_inta_o <= #1 irq_flag && ien;wb_inta_o <= #1 irq_flag && ien; ien; // interrupt signal is only generated when IEN (interrupt enable bit is set)
+	    wb_inta_o <= #1 irq_flag && ien; // interrupt signal is only generated when IEN (interrupt enable bit is set)
 
 	// assign status register bits
 	assign sr[7]   = rxack;
