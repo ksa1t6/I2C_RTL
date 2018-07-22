@@ -200,12 +200,12 @@ module i2c_master_bit_ctrl(
 	always @(posedge clk or negedge nReset)
 	  if(~nReset)
 	    begin
-	        cnt    <= 1;
+	        cnt    <= #1 16'h0;
 	        clk_en <= #1 1'b1;
 	    end
 	  else if (rst)
 	    begin
-	        cnt    <= 1;
+	        cnt    <= #1 16'h0;
 	        clk_en <= #1 1'b1;
 	    end
 	  else if ( ~|cnt || !ena)
@@ -532,7 +532,7 @@ module i2c_master_bit_ctrl(
 
 
 	// assign scl and sda output (always gnd)
-	assign scl_o = 1'b0;
+	assign scl_o = 0;
 	assign sda_o = 1'b0;
 
 endmodule
