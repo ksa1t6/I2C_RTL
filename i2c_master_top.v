@@ -180,13 +180,13 @@ module i2c(
 	  if (!rst_i)
 	    begin
 	        prer <= #1 16'hffff;
-	        ctr  <= #1  8'h0;
+	        ctr  <= 1;
 	        txr  <= #1  8'h0;
 	    end
 	  else if (wb_rst_i)
 	    begin
 	        prer <= #1 16'hffff;
-	        ctr  <= #1  8'h0;
+	        ctr  <= 1;
 	        txr  <= #1  8'h0;
 	    end
 	  else
@@ -263,14 +263,14 @@ module i2c(
 	  if (!rst_i)
 	    begin
 	        al       <= #1 1'b0;
-	        rxack <= #9 1'b0;
+	        rxack    <= #1 1'b0;
 	        tip      <= #1 1'b0;
 	        irq_flag <= #1 1'b0;
 	    end
 	  else if (wb_rst_i)
 	    begin
 	        al       <= #1 1'b0;
-	        rxack <= #9 1'b0;
+	        rxack    <= #1 1'b0;
 	        tip      <= #1 1'b0;
 	        irq_flag <= #1 1'b0;
 	    end
