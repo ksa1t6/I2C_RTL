@@ -210,7 +210,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else if ( ~|cnt || !ena)
 	    begin
-	        cnt <= #3 clk_cnt;
+	        cnt    <= #1 clk_cnt;
 	        clk_en <= #1 1'b1;
 	    end
 	  else if (slave_wait)
@@ -274,7 +274,7 @@ module i2c_master_bit_ctrl(
 	  else
 	    begin
 	        sta_condition <= #1 ~sSDA &  dSDA & sSCL;
-	        sto_condition <= #1  sSDA & ~dSDA & sSCL;
+	        sto_condition <= 0;
 	    end
 
 	// generate i2c bus busy signal
