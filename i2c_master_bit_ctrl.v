@@ -251,7 +251,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else
 	    begin
-	        sSCL <= #3 scl_i;
+	        sSCL <= #1 scl_i;
 	        sSDA <= #1 sda_i;
 
 	        dSCL <= #1 sSCL;
@@ -533,6 +533,6 @@ module i2c_master_bit_ctrl(
 
 	// assign scl and sda output (always gnd)
 	assign scl_o = 1'b0;
-	assign sda_o = 1'b0;
+	assign sda_o = 0;
 
 endmodule
