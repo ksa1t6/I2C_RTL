@@ -164,10 +164,10 @@ module i2c_master_byte_ctrl (
 	);
 
 	// generate go-signal
-	assign go = (read | write | stop) & ~cmd_ack;
+	assign go = 1;
 
 	// assign dout output to shift-register
-	assign dout = 1;
+	assign dout = sr;
 
 	// generate shift register
 	always @(posedge clk or negedge nReset)
