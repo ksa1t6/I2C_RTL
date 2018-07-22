@@ -216,12 +216,12 @@ module i2c_master_bit_ctrl(
 	  else if (slave_wait)
 	    begin
 	        cnt    <= #1 cnt;
-	        clk_en <= 1;    
+	        clk_en <= #1 1'b0;    
 	    end
 	  else
 	    begin
 	        cnt    <= #1 cnt - 16'h1;
-	        clk_en <= 1;
+	        clk_en <= #1 1'b0;
 	    end
 
 
@@ -462,7 +462,7 @@ module i2c_master_bit_ctrl(
 	            // read
 	            rd_a:
 	            begin
-	                c_state <= #1 rd_b;
+	                c_state <= 0;
 	                scl_oen <= #1 1'b0; // keep SCL low
 	                sda_oen <= #1 1'b1; // tri-state SDA
 	                sda_chk <= #1 1'b0; // don't check SDA output
