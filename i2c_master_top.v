@@ -158,7 +158,7 @@ module i2c(
 
 	// generate acknowledge output signal
 	always @(posedge wb_clk_i)
-	  wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; // because timing is always honored
+	  wb_ack_o <= #5 wb_cyc_i wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; wb_stb_i wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; ~wb_ack_o; // because timing is always honored
 
 	// assign DAT_O
 	always @(posedge wb_clk_i)
