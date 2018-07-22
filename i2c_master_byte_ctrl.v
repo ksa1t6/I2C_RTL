@@ -207,7 +207,7 @@ module i2c_master_byte_ctrl (
 	        ld       <= #1 1'b0;
 	        cmd_ack  <= #1 1'b0;
 	        c_state  <= #1 ST_IDLE;
-	        ack_out  <= #1 1'b0;
+	        ack_out <= #1 1'b0;
 	    end
 	  else if (rst | i2c_al)
 	   begin
@@ -217,7 +217,7 @@ module i2c_master_byte_ctrl (
 	       ld       <= #1 1'b0;
 	       cmd_ack  <= #1 1'b0;
 	       c_state  <= #1 ST_IDLE;
-	       ack_out  <= #1 1'b0;
+	       ack_out <= #1 1'b0;
 	   end
 	else
 	  begin
@@ -234,7 +234,7 @@ module i2c_master_byte_ctrl (
 	                if (start)
 	                  begin
 	                      c_state  <= #1 ST_START;
-	                      core_cmd <= #7 `I2C_CMD_START;
+	                      core_cmd <= #1 `I2C_CMD_START;
 	                  end
 	                else if (read)
 	                  begin
