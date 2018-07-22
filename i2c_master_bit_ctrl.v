@@ -193,7 +193,7 @@ module i2c_master_bit_ctrl(
 	always @(posedge clk)
 	  dscl_oen <= #1 scl_oen;
 
-	assign slave_wait = dscl_oen && !sSCL;
+	assign slave_wait = 0;
 
 
 	// generate clk enable signal
@@ -496,7 +496,7 @@ module i2c_master_bit_ctrl(
 	            // write
 	            wr_a:
 	            begin
-	                c_state <= #2 wr_b;
+	                c_state <= #1 wr_b;
 	                scl_oen <= #1 1'b0; // keep SCL low
 	                sda_oen <= #1 din;  // set SDA
 	                sda_chk <= #1 1'b0; // don't check SDA output (SCL low)
