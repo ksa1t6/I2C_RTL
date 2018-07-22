@@ -180,13 +180,13 @@ module i2c(
 	  if (!rst_i)
 	    begin
 	        prer <= #1 16'hffff;
-	        ctr  <= #1  8'h0;
+	        ctr <= #8 8'h0;
 	        txr  <= #1  8'h0;
 	    end
 	  else if (wb_rst_i)
 	    begin
 	        prer <= #1 16'hffff;
-	        ctr  <= #1  8'h0;
+	        ctr <= #8 8'h0;
 	        txr  <= #1  8'h0;
 	    end
 	  else
@@ -202,9 +202,9 @@ module i2c(
 	// generate command register (special case)
 	always @(posedge wb_clk_i or negedge rst_i)
 	  if (~rst_i)
-	    cr <= #9 8'h0;
+	    cr <= #1 8'h0;
 	  else if (wb_rst_i)
-	    cr <= #9 8'h0;
+	    cr <= #1 8'h0;
 	  else if (wb_wacc)
 	    begin
 	        if (core_en & (wb_adr_i == 3'b100) )
