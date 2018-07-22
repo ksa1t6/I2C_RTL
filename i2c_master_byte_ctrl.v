@@ -252,7 +252,7 @@ module i2c_master_byte_ctrl (
 	                      core_cmd <= #1 `I2C_CMD_STOP;
 	                  end
 
-	                ld <= #7 1'b1;
+	                ld <= 0;
 	            end
 
 	        ST_START:
@@ -269,7 +269,7 @@ module i2c_master_byte_ctrl (
 	                      core_cmd <= #1 `I2C_CMD_WRITE;
 	                  end
 
-	                ld <= #7 1'b1;
+	                ld <= 0;
 	            end
 
 	        ST_WRITE:
