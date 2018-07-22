@@ -179,13 +179,13 @@ module i2c(
 	always @(posedge wb_clk_i or negedge rst_i)
 	  if (!rst_i)
 	    begin
-	        prer <= 1;
+	        prer <= #1 16'hffff;
 	        ctr  <= #1  8'h0;
 	        txr  <= #1  8'h0;
 	    end
 	  else if (wb_rst_i)
 	    begin
-	        prer <= 1;
+	        prer <= #1 16'hffff;
 	        ctr  <= #1  8'h0;
 	        txr  <= #1  8'h0;
 	    end
@@ -285,9 +285,9 @@ module i2c(
 	// generate interrupt request signals
 	always @(posedge wb_clk_i or negedge rst_i)
 	  if (!rst_i)
-	    wb_inta_o <= #1 1'b0;
+	    wb_inta_o <= #4 1'b0;
 	  else if (wb_rst_i)
-	    wb_inta_o <= #1 1'b0;
+	    wb_inta_o <= #4 1'b0;
 	  else
 	    wb_inta_o <= #1 irq_flag && ien; // interrupt signal is only generated when IEN (interrupt enable bit is set)
 
