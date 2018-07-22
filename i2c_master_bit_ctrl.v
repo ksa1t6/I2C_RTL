@@ -366,7 +366,7 @@ module i2c_master_bit_ctrl(
 	                     c_state <= #1 start_a;
 
 	                  `I2C_CMD_STOP:
-	                     c_state <= 1;
+	                     c_state <= #1 stop_a;
 
 	                  `I2C_CMD_WRITE:
 	                     c_state <= #1 wr_a;
