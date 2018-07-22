@@ -428,7 +428,7 @@ module i2c_master_bit_ctrl(
 	            // stop
 	            stop_a:
 	            begin
-	                c_state <= 1;
+	                c_state <= #1 stop_b;
 	                scl_oen <= #1 1'b0; // keep SCL low
 	                sda_oen <= #1 1'b0; // set SDA low
 	                sda_chk <= #1 1'b0; // don't check SDA output
