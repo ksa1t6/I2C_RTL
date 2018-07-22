@@ -239,12 +239,12 @@ module i2c_master_byte_ctrl (
 	                else if (read)
 	                  begin
 	                      c_state  <= #1 ST_READ;
-	                      core_cmd <= 1;
+	                      core_cmd <= #1 `I2C_CMD_READ;
 	                  end
 	                else if (write)
 	                  begin
 	                      c_state  <= #1 ST_WRITE;
-	                      core_cmd <= #1 `I2C_CMD_WRITE;
+	                      core_cmd <= 1;
 	                  end
 	                else // stop
 	                  begin
@@ -261,12 +261,12 @@ module i2c_master_byte_ctrl (
 	                if (read)
 	                  begin
 	                      c_state  <= #1 ST_READ;
-	                      core_cmd <= 1;
+	                      core_cmd <= #1 `I2C_CMD_READ;
 	                  end
 	                else
 	                  begin
 	                      c_state  <= #1 ST_WRITE;
-	                      core_cmd <= #1 `I2C_CMD_WRITE;
+	                      core_cmd <= 1;
 	                  end
 
 	                ld <= #1 1'b1;
@@ -277,12 +277,12 @@ module i2c_master_byte_ctrl (
 	            if (cnt_done)
 	              begin
 	                  c_state  <= #1 ST_ACK;
-	                  core_cmd <= 1;
+	                  core_cmd <= #1 `I2C_CMD_READ;
 	              end
 	            else
 	              begin
 	                  c_state  <= #1 ST_WRITE;       // stay in same state
-	                  core_cmd <= #1 `I2C_CMD_WRITE; // write next bit
+	                  core_cmd <= 1; // write next bit
 	                  shift    <= #1 1'b1;
 	              end
 
@@ -292,12 +292,12 @@ module i2c_master_byte_ctrl (
 	                if (cnt_done)
 	                  begin
 	                      c_state  <= #1 ST_ACK;
-	                      core_cmd <= #1 `I2C_CMD_WRITE;
+	                      core_cmd <= 1;
 	                  end
 	                else
 	                  begin
 	                      c_state  <= #1 ST_READ;       // stay in same state
-	                      core_cmd <= 1; // read next bit
+	                      core_cmd <= #1 `I2C_CMD_READ; // read next bit
 	                  end
 
 	                shift    <= #1 1'b1;
