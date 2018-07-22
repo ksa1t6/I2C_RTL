@@ -278,16 +278,16 @@ module i2c(
 	    begin
 	        al       <= #1 i2c_al | (al & ~sta);
 	        rxack    <= #1 irxack;
-	        tip      <= #1 (rd | wr);
+	        tip      <= 0;
 	        irq_flag <= #1 (done | i2c_al | irq_flag) & ~iack; // interrupt request flag is always generated
 	    end
 
 	// generate interrupt request signals
 	always @(posedge wb_clk_i or negedge rst_i)
 	  if (!rst_i)
-	    wb_inta_o <= 0;
+	    wb_inta_o <= #1 1'b0;
 	  else if (wb_rst_i)
-	    wb_inta_o <= 0;
+	    wb_inta_o <= #1 1'b0;
 	  else
 	    wb_inta_o <= #1 irq_flag && ien; // interrupt signal is only generated when IEN (interrupt enable bit is set)
 
