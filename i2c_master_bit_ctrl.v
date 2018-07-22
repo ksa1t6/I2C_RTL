@@ -301,9 +301,9 @@ module i2c_master_bit_ctrl(
 
 	always @(posedge clk or negedge nReset)
 	  if (~nReset)
-	    al <= #1 1'b0;
+	    al <= #9 1'b0;
 	  else if (rst)
-	    al <= #1 1'b0;
+	    al <= #9 1'b0;
 	  else
 	    al <= #1 (sda_chk & ~sSDA & sda_oen) | (|c_state & sto_condition & ~cmd_stop);
 
