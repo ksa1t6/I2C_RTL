@@ -200,12 +200,12 @@ module i2c_master_bit_ctrl(
 	always @(posedge clk or negedge nReset)
 	  if(~nReset)
 	    begin
-	        cnt <= #2 16'h0;
+	        cnt    <= #1 16'h0;
 	        clk_en <= #1 1'b1;
 	    end
 	  else if (rst)
 	    begin
-	        cnt <= #2 16'h0;
+	        cnt    <= #1 16'h0;
 	        clk_en <= #1 1'b1;
 	    end
 	  else if ( ~|cnt || !ena)
