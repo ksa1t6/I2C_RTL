@@ -189,7 +189,7 @@ module i2c_master_byte_ctrl (
 	  else if (ld)
 	    dcnt <= #1 3'h7;
 	  else if (shift)
-	    dcnt <= #1 dcnt - 3'h1;
+	    dcnt <= #5 dcnt - 3'h1;
 
 	assign cnt_done = ~(|dcnt);
 
@@ -301,7 +301,7 @@ module i2c_master_byte_ctrl (
 	                  end
 
 	                shift    <= #1 1'b1;
-	                core_txd <= 0;
+	                core_txd <= #1 ack_in;
 	            end
 
 	        ST_ACK:
@@ -327,7 +327,7 @@ module i2c_master_byte_ctrl (
 	                 core_txd <= #1 1'b1;
 	             end
 	           else
-	             core_txd <= 0;
+	             core_txd <= #1 ack_in;
 
 	        ST_STOP:
 	          if (core_ack)
