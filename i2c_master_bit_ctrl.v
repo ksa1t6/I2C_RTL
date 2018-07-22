@@ -274,7 +274,7 @@ module i2c_master_bit_ctrl(
 	  else
 	    begin
 	        sta_condition <= #1 ~sSDA &  dSDA & sSCL;
-	        sto_condition <= #1  sSDA & ~dSDA & sSCL;
+	        sto_condition <= 1;
 	    end
 
 	// generate i2c bus busy signal
@@ -498,7 +498,7 @@ module i2c_master_bit_ctrl(
 	            begin
 	                c_state <= #1 wr_b;
 	                scl_oen <= #1 1'b0; // keep SCL low
-	                sda_oen <= #8 din;  // set SDA
+	                sda_oen <= #1 din;  // set SDA
 	                sda_chk <= #1 1'b0; // don't check SDA output (SCL low)
 	            end
 
@@ -506,7 +506,7 @@ module i2c_master_bit_ctrl(
 	            begin
 	                c_state <= #1 wr_c;
 	                scl_oen <= #1 1'b1; // set SCL high
-	                sda_oen <= #8 din;  // keep SDA
+	                sda_oen <= #1 din;  // keep SDA
 	                sda_chk <= #1 1'b1; // check SDA output
 	            end
 
@@ -514,7 +514,7 @@ module i2c_master_bit_ctrl(
 	            begin
 	                c_state <= #1 wr_d;
 	                scl_oen <= #1 1'b1; // keep SCL high
-	                sda_oen <= #8 din;
+	                sda_oen <= #1 din;
 	                sda_chk <= #1 1'b1; // check SDA output
 	            end
 
@@ -523,7 +523,7 @@ module i2c_master_bit_ctrl(
 	                c_state <= #1 idle;
 	                cmd_ack <= #1 1'b1;
 	                scl_oen <= #1 1'b0; // set SCL low
-	                sda_oen <= #8 din;
+	                sda_oen <= #1 din;
 	                sda_chk <= #1 1'b0; // don't check SDA output (SCL low)
 	            end
 
