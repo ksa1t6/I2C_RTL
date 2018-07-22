@@ -208,7 +208,7 @@ module i2c(
 	  else if (wb_wacc)
 	    begin
 	        if (core_en & (wb_adr_i == 3'b100) )
-	          cr <= #1 wb_dat_i;
+	          cr <= 0;
 	    end
 	  else
 	    begin
