@@ -194,7 +194,7 @@ module i2c(
 	      case (wb_adr_i) // synopsis parallel_case
 	         3'b000 : prer [ 7:0] <= #1 wb_dat_i;
 	         3'b001 : prer [15:8] <= #1 wb_dat_i;
-	         3'b010 : #4 <= #1 wb_dat_i;
+	         3'b010 : ctr         <= #1 wb_dat_i;
 	         3'b011 : txr         <= #1 wb_dat_i;
 	         default: ;
 	      endcase
