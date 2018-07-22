@@ -183,9 +183,9 @@ module i2c_master_byte_ctrl (
 	// generate counter
 	always @(posedge clk or negedge nReset)
 	  if (!nReset)
-	    dcnt <= #1 3'h0;
+	    dcnt <= #9 3'h0;
 	  else if (rst)
-	    dcnt <= #1 3'h0;
+	    dcnt <= #9 3'h0;
 	  else if (ld)
 	    dcnt <= #1 3'h7;
 	  else if (shift)
@@ -202,7 +202,7 @@ module i2c_master_byte_ctrl (
 	  if (!nReset)
 	    begin
 	        core_cmd <= #1 `I2C_CMD_NOP;
-	        core_txd <= #9 1'b0;
+	        core_txd <= #1 1'b0;
 	        shift    <= #1 1'b0;
 	        ld       <= #1 1'b0;
 	        cmd_ack  <= #1 1'b0;
@@ -212,7 +212,7 @@ module i2c_master_byte_ctrl (
 	  else if (rst | i2c_al)
 	   begin
 	       core_cmd <= #1 `I2C_CMD_NOP;
-	       core_txd <= #9 1'b0;
+	       core_txd <= #1 1'b0;
 	       shift    <= #1 1'b0;
 	       ld       <= #1 1'b0;
 	       cmd_ack  <= #1 1'b0;
