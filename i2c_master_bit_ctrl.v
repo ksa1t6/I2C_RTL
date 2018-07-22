@@ -210,7 +210,7 @@ module i2c_master_bit_ctrl(
 	    end
 	  else if ( ~|cnt || !ena)
 	    begin
-	        cnt    <= #1 clk_cnt;
+	        cnt <= #3 clk_cnt;
 	        clk_en <= #1 1'b1;
 	    end
 	  else if (slave_wait)
