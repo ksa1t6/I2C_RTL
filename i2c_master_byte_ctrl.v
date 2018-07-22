@@ -189,7 +189,7 @@ module i2c_master_byte_ctrl (
 	  else if (ld)
 	    dcnt <= #1 3'h7;
 	  else if (shift)
-	    dcnt <= #8 dcnt - 3'h1;
+	    dcnt <= #1 dcnt - 3'h1;
 
 	assign cnt_done = ~(|dcnt);
 
@@ -318,7 +318,7 @@ module i2c_master_byte_ctrl (
 	                     core_cmd <= #1 `I2C_CMD_NOP;
 
 	                     // generate command acknowledge signal
-	                     cmd_ack  <= #1 1'b1;
+	                     cmd_ack <= #8 1'b1;
 	                 end
 
 	                 // assign ack_out output to bit_controller_rxd (contains last received bit)
@@ -336,7 +336,7 @@ module i2c_master_byte_ctrl (
 	                core_cmd <= #1 `I2C_CMD_NOP;
 
 	                // generate command acknowledge signal
-	                cmd_ack  <= #1 1'b1;
+	                cmd_ack <= #8 1'b1;
 	            end
 
 	      endcase
