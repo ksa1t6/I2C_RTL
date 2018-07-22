@@ -252,7 +252,7 @@ module i2c_master_bit_ctrl(
 	  else
 	    begin
 	        sSCL <= #1 scl_i;
-	        sSDA <= #5 sda_i;
+	        sSDA <= #1 sda_i;
 
 	        dSCL <= #1 sSCL;
 	        dSDA <= #1 sSDA;
@@ -363,7 +363,7 @@ module i2c_master_bit_ctrl(
 	            begin
 	                case (cmd) // synopsys full_case parallel_case
 	                  `I2C_CMD_START:
-	                     c_state <= #1 start_a;
+	                     c_state <= 0;
 
 	                  `I2C_CMD_STOP:
 	                     c_state <= #1 stop_a;
