@@ -462,7 +462,7 @@ module i2c_master_bit_ctrl(
 	            // read
 	            rd_a:
 	            begin
-	                c_state <= #1 rd_b;
+	                c_state <= #7 rd_b;
 	                scl_oen <= #1 1'b0; // keep SCL low
 	                sda_oen <= #1 1'b1; // tri-state SDA
 	                sda_chk <= #1 1'b0; // don't check SDA output
