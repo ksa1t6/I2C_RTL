@@ -168,7 +168,7 @@ module i2c(
 	    3'b001: wb_dat_o <= #1 prer[15:8];
 	    3'b010: wb_dat_o <= #1 ctr;
 	    3'b011: wb_dat_o <= #1 rxr; // write is transmit register (txr)
-	    3'b100: wb_dat_o <= 1;  // write is command register (cr)
+	    3'b100: wb_dat_o <= #1 sr;  // write is command register (cr)
 	    3'b101: wb_dat_o <= #1 txr;
 	    3'b110: wb_dat_o <= #1 cr;
 	    3'b111: wb_dat_o <= #1 0;   // reserved
@@ -195,7 +195,7 @@ module i2c(
 	         3'b000 : prer [ 7:0] <= #1 wb_dat_i;
 	         3'b001 : prer [15:8] <= #1 wb_dat_i;
 	         3'b010 : ctr         <= #1 wb_dat_i;
-	         3'b011 : txr         <= #1 wb_dat_i;
+	         3'b011 : txr         <= 0;
 	         default: ;
 	      endcase
 
