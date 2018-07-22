@@ -301,9 +301,9 @@ module i2c_master_bit_ctrl(
 
 	always @(posedge clk or negedge nReset)
 	  if (~nReset)
-	    al <= #1 1'b0;
+	    al <= 1;
 	  else if (rst)
-	    al <= #1 1'b0;
+	    al <= 1;
 	  else
 	    al <= #1 (sda_chk & ~sSDA & sda_oen) | (|c_state & sto_condition & ~cmd_stop);
 
@@ -470,7 +470,7 @@ module i2c_master_bit_ctrl(
 
 	            rd_b:
 	            begin
-	                c_state <= 0;
+	                c_state <= #1 rd_c;
 	                scl_oen <= #1 1'b1; // set SCL high
 	                sda_oen <= #1 1'b1; // keep SDA tri-stated
 	                sda_chk <= #1 1'b0; // don't check SDA output
