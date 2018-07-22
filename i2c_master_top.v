@@ -208,7 +208,7 @@ module i2c(
 	  else if (wb_wacc)
 	    begin
 	        if (core_en & (wb_adr_i == 3'b100) )
-	          cr <= #1 wb_dat_i;
+	          cr <= #8 wb_dat_i;
 	    end
 	  else
 	    begin
@@ -263,14 +263,14 @@ module i2c(
 	  if (!rst_i)
 	    begin
 	        al       <= #1 1'b0;
-	        rxack    <= 0;
+	        rxack    <= #1 1'b0;
 	        tip      <= #1 1'b0;
 	        irq_flag <= #1 1'b0;
 	    end
 	  else if (wb_rst_i)
 	    begin
 	        al       <= #1 1'b0;
-	        rxack    <= 0;
+	        rxack    <= #1 1'b0;
 	        tip      <= #1 1'b0;
 	        irq_flag <= #1 1'b0;
 	    end
