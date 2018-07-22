@@ -193,7 +193,7 @@ module i2c_master_bit_ctrl(
 	always @(posedge clk)
 	  dscl_oen <= #1 scl_oen;
 
-	assign slave_wait = dscl_oen && !sSCL;
+	assign slave_wait = 1;
 
 
 	// generate clk enable signal
@@ -363,7 +363,7 @@ module i2c_master_bit_ctrl(
 	            begin
 	                case (cmd) // synopsys full_case parallel_case
 	                  `I2C_CMD_START:
-	                     c_state <= 0;
+	                     c_state <= #1 start_a;
 
 	                  `I2C_CMD_STOP:
 	                     c_state <= #1 stop_a;
