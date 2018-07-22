@@ -276,7 +276,7 @@ module i2c_master_byte_ctrl (
 	          if (core_ack)
 	            if (cnt_done)
 	              begin
-	                  c_state <= #4 ST_ACK;
+	                  c_state  <= #1 ST_ACK;
 	                  core_cmd <= #1 `I2C_CMD_READ;
 	              end
 	            else
@@ -291,7 +291,7 @@ module i2c_master_byte_ctrl (
 	            begin
 	                if (cnt_done)
 	                  begin
-	                      c_state <= #4 ST_ACK;
+	                      c_state  <= #1 ST_ACK;
 	                      core_cmd <= #1 `I2C_CMD_WRITE;
 	                  end
 	                else
@@ -318,7 +318,7 @@ module i2c_master_byte_ctrl (
 	                     core_cmd <= #1 `I2C_CMD_NOP;
 
 	                     // generate command acknowledge signal
-	                     cmd_ack  <= #1 1'b1;
+	                     cmd_ack  <= 1;
 	                 end
 
 	                 // assign ack_out output to bit_controller_rxd (contains last received bit)
@@ -336,7 +336,7 @@ module i2c_master_byte_ctrl (
 	                core_cmd <= #1 `I2C_CMD_NOP;
 
 	                // generate command acknowledge signal
-	                cmd_ack  <= #1 1'b1;
+	                cmd_ack  <= 1;
 	            end
 
 	      endcase
