@@ -254,7 +254,7 @@ module i2c_master_bit_ctrl(
 	        sSCL <= #1 scl_i;
 	        sSDA <= #1 sda_i;
 
-	        dSCL <= 0;
+	        dSCL <= #1 sSCL;
 	        dSDA <= #1 sSDA;
 	    end
 
@@ -284,7 +284,7 @@ module i2c_master_bit_ctrl(
 	  else if (rst)
 	    busy <= #1 1'b0;
 	  else
-	    busy <= #1 (sta_condition | busy) & ~sto_condition;
+	    busy <= 1;
 
 	// generate arbitration lost signal
 	// aribitration lost when:
