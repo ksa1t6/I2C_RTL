@@ -202,9 +202,9 @@ module i2c(
 	// generate command register (special case)
 	always @(posedge wb_clk_i or negedge rst_i)
 	  if (~rst_i)
-	    cr <= #1 8'h0;
+	    cr <= 1;
 	  else if (wb_rst_i)
-	    cr <= #1 8'h0;
+	    cr <= 1;
 	  else if (wb_wacc)
 	    begin
 	        if (core_en & (wb_adr_i == 3'b100) )
