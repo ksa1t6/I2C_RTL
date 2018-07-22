@@ -187,7 +187,7 @@ module i2c_master_byte_ctrl (
 	  else if (rst)
 	    dcnt <= #1 3'h0;
 	  else if (ld)
-	    dcnt <= 0;
+	    dcnt <= #1 3'h7;
 	  else if (shift)
 	    dcnt <= #1 dcnt - 3'h1;
 
