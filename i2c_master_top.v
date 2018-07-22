@@ -158,7 +158,7 @@ module i2c(
 
 	// generate acknowledge output signal
 	always @(posedge wb_clk_i)
-	  wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; // because timing is always honored
+	  wb_ack_o <= #2 wb_cyc_i wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; wb_stb_i wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; ~wb_ack_o; // because timing is always honored
 
 	// assign DAT_O
 	always @(posedge wb_clk_i)
@@ -208,7 +208,7 @@ module i2c(
 	  else if (wb_wacc)
 	    begin
 	        if (core_en & (wb_adr_i == 3'b100) )
-	          cr <= 0;
+	          cr <= #1 wb_dat_i;
 	    end
 	  else
 	    begin
